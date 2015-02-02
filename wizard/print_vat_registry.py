@@ -142,12 +142,15 @@ class temporary_vatregistry(orm.Model):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
             inv_total = curr_obj.round(
-                cr, uid, invoice.currency_id.id, std_curr, invoice.amount_total)
+                cr, uid, invoice.currency_id.id, std_curr,
+                invoice.amount_total, True, False, False, context)
             for tax_line in invoice.tax_line:
                 amount_untaxed = curr_obj.round(
-                    cr, uid, invoice.currency_id.id, std_curr, tax_line.base)
+                    cr, uid, invoice.currency_id.id, std_curr,
+                    tax_line.base, True, False, False, context)
                 amount_tax = curr_obj.round(
-                    cr, uid, invoice.currency_id.id, std_curr, tax_line.amount)
+                    cr, uid, invoice.currency_id.id, std_curr,
+                    tax_line.amount, True, False, False, context)
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
