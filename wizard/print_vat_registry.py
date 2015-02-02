@@ -115,8 +115,7 @@ class temporary_vatregistry(orm.Model):
         #~ move_obj = self.pool.get('account.move')
         invoice_obj = self.pool.get('account.invoice')
         curr_obj = self.pool['res.currency']
-        std_curr = self.pool['res.company'].browse(
-            cr, uid, inv.company_id.id).currency_id.id
+
         #~ move_ids = move_obj.search(cr, uid, [
             #~ ('journal_id', 'in', [j.id for j in paramters.journal_ids]),
             #~ ('period_id', 'in', [p.id for p in paramters.period_ids]),
@@ -133,6 +132,8 @@ class temporary_vatregistry(orm.Model):
             return False
         line_ids = []
         for invoice in invoice_obj.browse(cr, uid, invoice_ids, context):
+            std_curr = self.pool['res.company'].browse(
+                cr, uid, invoice.company_id.id).currency_id.id
             tax_sign = 1
             if invoice.state in ('proforma', 'proforma2'):
                 continue
