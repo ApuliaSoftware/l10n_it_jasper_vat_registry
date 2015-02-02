@@ -141,14 +141,14 @@ class temporary_vatregistry(orm.Model):
             if invoice.type in ('in_invoice', 'out_refund'):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
-            inv_total = curr_obj.round(
+            inv_total = curr_obj.compute(
                  cr, uid, invoice.currency_id.id,
-                 std_curr, invoice.amount_total)
+                 std_curr, invoice.amount_total, True, False, False, context)
             for tax_line in invoice.tax_line:
-                amount_untaxed = curr_obj.round(
+                amount_untaxed = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
                     tax_line.base, True, False, False, context)
-                amount_tax = curr_obj.round(
+                amount_tax = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
                     tax_line.amount, True, False, False, context)
                 vals = {
