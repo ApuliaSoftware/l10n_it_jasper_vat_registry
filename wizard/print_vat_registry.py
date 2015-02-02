@@ -142,8 +142,8 @@ class temporary_vatregistry(orm.Model):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
             inv_total = curr_obj.round(
-                cr, uid, invoice.currency_id.id, std_curr,
-                invoice.amount_total, True, False, False, context)
+                 cr, uid, invoice.currency_id.id,
+                 std_curr, invoice.amount_total)
             for tax_line in invoice.tax_line:
                 amount_untaxed = curr_obj.round(
                     cr, uid, invoice.currency_id.id, std_curr,
