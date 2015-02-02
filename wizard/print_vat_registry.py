@@ -114,6 +114,9 @@ class temporary_vatregistry(orm.Model):
         self._pulisci(cr, uid, context)
         #~ move_obj = self.pool.get('account.move')
         invoice_obj = self.pool.get('account.invoice')
+        curr_obj = self.pool['res.currency']
+        std_curr = self.pool['res.company'].browse(
+            cr, uid, inv.company_id.id).currency_id.id
         #~ move_ids = move_obj.search(cr, uid, [
             #~ ('journal_id', 'in', [j.id for j in paramters.journal_ids]),
             #~ ('period_id', 'in', [p.id for p in paramters.period_ids]),
@@ -137,7 +140,13 @@ class temporary_vatregistry(orm.Model):
             if invoice.type in ('in_invoice', 'out_refund'):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
+            inv_total = curr_obj.round(
+                cr, uid, invoice.currency_id.id, std_curr, invoice.amount_total)
             for tax_line in invoice.tax_line:
+                amount_untaxed = curr_obj.round(
+                    cr, uid, invoice.currency_id.id, std_curr, tax_line.base)
+                amount_tax = curr_obj.round(
+                    cr, uid, invoice.currency_id.id, std_curr, tax_line.amount)
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
@@ -147,11 +156,10 @@ class temporary_vatregistry(orm.Model):
                     'invoice_date': invoice.date_invoice,
                     'partner_id': invoice.partner_id.id,
                     'invoice_type': invoice.type,
-                    'invoice_total': invoice.amount_total,
-                    #~ 'tax_id': move.account_tax_id.id,
+                    'invoice_total': inv_total,
                     'tax_code_id': tax_line.tax_code_id.id,
-                    'amount_untaxed': tax_line.base * tax_sign,
-                    'amount_tax': tax_line.amount * tax_sign,
+                    'amount_untaxed': amount_untaxed * tax_sign,
+                    'amount_tax': amount_tax * tax_sign,
                     'journal_id': invoice.journal_id.id,
                     'period_id': invoice.period_id.id,
                     }
