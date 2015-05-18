@@ -31,3 +31,4 @@ class ResCompany(orm.Model):
         'use_origin': fields.boolean(
             'Use Origin in accout report for in invoices'),
     }
+
