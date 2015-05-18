@@ -139,7 +139,6 @@ class temporary_vatregistry(orm.Model):
                 continue
             invoice_number = invoice.number
             if invoice.company_id.use_origin:
-                # reading company setting end replace invoice_number
                 invoice_number = invoice.origin
             if invoice.type in ('in_invoice', 'out_refund'):
                 tax_sign = -1
