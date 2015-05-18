@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_company_account_report_config">
+        <field name="name">res.company.account.report.config.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside" >
+                <page string="Account Report Config">
+                    <group>
+                        <field name="use_origin" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</data>
+</openerp>

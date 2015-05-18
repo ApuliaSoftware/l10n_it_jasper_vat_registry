@@ -138,6 +138,9 @@ class temporary_vatregistry(orm.Model):
             if invoice.state in ('proforma', 'proforma2'):
                 continue
             invoice_number = invoice.number
+            if invoice.company_id.use_origin:
+                # reading company setting end replace invoice_number
+                invoice_number = invoice.origin
             if invoice.type in ('in_invoice', 'out_refund'):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
