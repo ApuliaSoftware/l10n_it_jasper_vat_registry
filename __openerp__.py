@@ -33,6 +33,7 @@
     "init_xml": ['wizard/print_vat_registry.xml',
                  'report.xml',
                  'security/ir.model.access.csv',
+                 'company/company_view.xml',
                  ],
     "update_xml": [],
     "demo_xml": [],
