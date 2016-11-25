@@ -34,6 +34,7 @@
                  'report.xml',
                  'security/ir.model.access.csv',
                  'company/company_view.xml',
+                 'account.xml'
                  ],
     "update_xml": [],
     "demo_xml": [],
