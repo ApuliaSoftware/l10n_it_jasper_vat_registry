@@ -233,7 +233,7 @@ class wizard_print_vatregistry(orm.TransientModel):
             registry = self.pool.get('vat.registry').browse(cr, uid, registry_id)
             if registry.journal_ids:
                 iids =[]
-                for journal in registry_id.journal_ids:
+                for journal in registry.journal_ids:
                     iids.append(journal.journal_id.id)
                 v = {'journal_ids' : [(6, 0, iids)]}
         return {'value': v, 'domain': domain, 'warning': warning}
