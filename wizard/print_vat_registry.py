@@ -224,12 +224,14 @@ class wizard_print_vatregistry(orm.TransientModel):
 
     def on_change_registry_id(self, cr, uid, ids, registry_id, context=False):
         v = {}
+        import pdb;pdb.set_trace()
         warning = {}
         domain = {}
         if not context:
             context = {}
         if registry_id:
-            if registry_id.journal_ids:
+            registry = self.pool.get('vat.registry').browse(cr, uid, registry_id)
+            if registry.journal_ids:
                 iids =[]
                 for journal in registry_id.journal_ids:
                     iids.append(journal.journal_id.id)
