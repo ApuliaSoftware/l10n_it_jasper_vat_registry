@@ -199,6 +199,7 @@ class wizard_print_vatregistry(orm.TransientModel):
             ('supplier', 'Supplier Invoices'),
             ('corrispettivi', 'Corrispettivi'),
             ], 'Layout', required=True),
+        'registry_id': fields.many2one('vat.registry', 'Registro Iva'),
         'journal_ids': fields.many2many(
             'account.journal',
             'vat_registry_journals_rel',
@@ -219,6 +220,23 @@ class wizard_print_vatregistry(orm.TransientModel):
         'fiscal_page_base': 0,
         'fiscal_year_page': lambda * a: time.strftime('%Y')
         }
+
+
+    def on_change_registry_id(self, cr, uid, ids, registry_id, context=False):
+        v = {}
+        warning = {}
+        domain = {}
+        if not context:
+            context = {}
+        if registry_id:
+            if registry_id.journal_ids:
+                iids =[]
+                for journal in registry_id.journal_ids:
+                    iids.append(journal.journal_id.id)
+                v = {'journal_ids' : [(6, 0, iids)]}
+        return {'value': v, 'domain': domain, 'warning': warning}
+
+
 
     def start_printing(self, cr, uid, ids, context={}):
         parameters = self.browse(cr, uid, ids, context)[0]

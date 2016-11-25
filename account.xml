@@ -34,7 +34,7 @@
                         <page string="Voucher Entry">
                             <field name="journal_ids"  >
                                 <tree string="Voucher Items" editable="bottom">
-                                    <field name="journal_id"/>
+                                    <field name="journal_id" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
                                 </tree>
                             </field>
                         </page>

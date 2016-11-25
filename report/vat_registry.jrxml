@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vat_registry" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9bf5e0b1-c96d-4004-b23f-194a803ceadc">
 	<property name="ireport.zoom" value="2.1435888100000016"/>
-	<property name="ireport.x" value="2"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
@@ -115,7 +115,7 @@ temporary_vatregistry."name" ASC]]>
 					<text><![CDATA[Nr. Prot.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="71" y="35" width="36" height="15" uuid="ec683ec3-49b2-4a48-a539-be31a195d89f"/>
+					<reportElement x="60" y="35" width="36" height="15" uuid="ec683ec3-49b2-4a48-a539-be31a195d89f"/>
 					<text><![CDATA[Data Reg.]]></text>
 				</staticText>
 				<staticText>
@@ -135,7 +135,7 @@ temporary_vatregistry."name" ASC]]>
 					<text><![CDATA[Tipo IVA Assoggettamento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="389" y="20" width="41" height="15" uuid="149dcbaa-c644-4bab-bf11-5cbca97ffbd7"/>
+					<reportElement x="440" y="20" width="41" height="15" uuid="149dcbaa-c644-4bab-bf11-5cbca97ffbd7"/>
 					<text><![CDATA[Causale]]></text>
 				</staticText>
 				<staticText>
@@ -178,48 +178,48 @@ temporary_vatregistry."name" ASC]]>
 	<group name="Invoice">
 		<groupExpression><![CDATA[$F{temporary_vatregistry_invoice_id}]]></groupExpression>
 		<groupHeader>
-			<band height="23" splitType="Prevent">
+			<band height="11" splitType="Prevent">
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement x="67" y="0" width="47" height="10" uuid="a9464264-ddc0-4c0c-bf11-43e58a70d23f"/>
+					<reportElement x="56" y="0" width="47" height="10" uuid="a9464264-ddc0-4c0c-bf11-43e58a70d23f"/>
 					<textElement>
-						<font size="8"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_date}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-					<reportElement x="113" y="0" width="70" height="10" uuid="57f2b6c8-f34d-446a-bc8f-9e7961626148"/>
+					<reportElement x="107" y="0" width="76" height="10" uuid="57f2b6c8-f34d-446a-bc8f-9e7961626148"/>
 					<textElement>
-						<font size="7"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_invoice_number}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement x="182" y="0" width="48" height="10" uuid="32ea0e2a-6d98-4117-b12e-64fc8cedef85"/>
 					<textElement>
-						<font size="8"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_invoice_date}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="228" y="0" width="159" height="10" uuid="dc143ed2-95b3-4200-bb7c-b85a9c7354ee"/>
+					<reportElement x="228" y="0" width="101" height="10" uuid="dc143ed2-95b3-4200-bb7c-b85a9c7354ee"/>
 					<textElement>
-						<font size="8"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{res_partner_a_name}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="228" y="10" width="159" height="10" uuid="2ec208df-1cae-4c0e-a187-bc1be61320c4"/>
+					<reportElement x="329" y="0" width="125" height="10" uuid="2ec208df-1cae-4c0e-a187-bc1be61320c4"/>
 					<textElement>
-						<font size="7"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA["P.I. " + ($F{res_partner_a_vat} == null ? "": $F{res_partner_a_vat})+
 " C.F. " +
 ($F{res_partner_a_fiscalcode} == null ? "" :$F{res_partner_a_fiscalcode})]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="389" y="0" width="102" height="10" uuid="afae30b8-3816-43fe-9335-d5f10f67cb2e"/>
+					<reportElement x="454" y="0" width="56" height="10" isPrintWhenDetailOverflows="true" uuid="afae30b8-3816-43fe-9335-d5f10f67cb2e"/>
 					<textElement>
-						<font size="8"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_invoice_type}.contains( "invoice" ) ? "Fattura" : ""
 + " " +
@@ -228,25 +228,16 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 				<textField pattern="#,##0.00" isBlankWhenNull="true">
 					<reportElement x="497" y="0" width="57" height="10" uuid="afed816f-59b1-4ce0-a4d9-acac8d6bbbe7"/>
 					<textElement textAlignment="Right">
-						<font size="8"/>
+						<font size="6" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_invoice_total}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="0" y="0" width="70" height="10" uuid="2adeedf8-5996-4a2e-9f98-78b6dce986a8"/>
+					<reportElement x="0" y="0" width="51" height="10" uuid="2adeedf8-5996-4a2e-9f98-78b6dce986a8"/>
 					<textElement>
-						<font size="8"/>
+						<font size="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{temporary_vatregistry_name}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="389" y="10" width="60" height="10" uuid="d70a9cb5-52bc-4f94-b95d-3d3d3576ab14"/>
-					<textElement>
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{temporary_vatregistry_invoice_type}.contains( "out" ) ? "Vendita" : ""
-+ " " +
-$F{temporary_vatregistry_invoice_type}.contains( "in" ) ? "Acquisto" : ""]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -310,21 +301,21 @@ $F{temporary_vatregistry_invoice_type}.contains( "in" ) ? "Acquisto" : ""]]></te
 			<textField>
 				<reportElement x="230" y="0" width="137" height="10" uuid="97fe83fe-404a-4aa9-9fc0-0f2f641af8f9"/>
 				<textElement>
-					<font size="8"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{account_tax_code_name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="414" y="0" width="77" height="10" uuid="df5461f0-7af8-446f-a417-f722ebcecedf"/>
 				<textElement textAlignment="Right">
-					<font size="8"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{temporary_vatregistry_amount_untaxed} < 0 ? $F{temporary_vatregistry_amount_untaxed} * -1 : $F{temporary_vatregistry_amount_untaxed}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="497" y="0" width="57" height="10" uuid="642649f2-9b4d-44bf-ab80-ff826da50f2c"/>
 				<textElement textAlignment="Right">
-					<font size="8"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{temporary_vatregistry_amount_tax} < 0 ? $F{temporary_vatregistry_amount_tax} * -1 : $F{temporary_vatregistry_amount_tax}]]></textFieldExpression>
 			</textField>
