@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	 <record id="view_vatregistry_tree" model="ir.ui.view">
+            <field name="name">vat.registry.tree</field>
+            <field name="model">vat.registry</field>
+	    <field name="type">tree</field>
+	    <field name="arch" type="xml">
+	      <tree string="Registri Iva">
+		      <field name="code" />
+		      <field name="name" />
+		      <field name="type" />
+              <field name="activity_code" />
+
+	      </tree>
+	    </field>
+	  </record>
+
+
+	 <record id="view_vatregistry_form" model="ir.ui.view">
+            <field name="name">vatregistry.form</field>
+			<field name="model">vat.registry</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Registro Iva">
+                    <group>
+                        <field name="code" />
+		                <field name="name" />
+		                <field name="type" />
+                        <field name="activity_code" />
+                    </group>
+                    <group>
+                        <field name="journal_ids" />
+                    </group>
+
+		      </form>
+		    </field>
+		  </record>
+
+	<record id="action_vatregistry" model="ir.actions.act_window">
+            <field name="name">Resgistri Iva</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vat.registry</field>
+		<field name="view_mode">tree,form</field>
+     </record>
+
+<menuitem action="action_vatregistry" id="menu_vatregistry_tree" parent="account.menu_journals" />
+
+
+</data>
+</openerp>

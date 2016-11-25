@@ -1,4 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-
 TMP1_temporary_vatregistry, temporary_vatregistry,model_temporary_vatregistry,,1,1,1,1
 TMP2_temporay_vatregisty_total, temporay_vatregisty_total,model_temporay_vatregisty_total,,1,1,1,1
+a_vat_registry, vat_registry,model_vat_registry,,1,1,1,1
+a_vat_registry_journals, vat_registry_journals,model_vat_registry_journals,,1,1,1,1

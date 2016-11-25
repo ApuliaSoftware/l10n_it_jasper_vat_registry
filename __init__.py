@@ -21,3 +21,4 @@
 
 from . import wizard
 from . import company
+from . import account
