@@ -31,7 +31,7 @@ class vat_registry(orm.Model):
         'reg_vat_code': fields.char('Codice Registro', size=10),
         'name': fields.char('Descrizione', size=30),
         'activity_code': fields.char('Codice Attivita', size=10),
-        'journal_ids': fields.one2many('vat.registry.journals', 'Lista Sezionali'),
+        'journal_ids': fields.one2many('vat.registry.journals', 'vat_registry_id',''Lista Sezionali'),
         'type': fields.selection(
                 (('Vendite', 'vendite'), ('Acquisti', 'acquisti'), ('Corrispettivi', 'corrispettivi')),
                 'Tipo Registro'),
