@@ -103,7 +103,10 @@ class temporary_vatregistry(orm.Model):
         'amount_tax': fields.float('Amount Tax'),
         'journal_id': fields.many2one('account.journal', 'Journal'),
         'period_id': fields.many2one('account.period', 'Period'),
-        }
+        'registry_id': fields.many2one('vat.registry', 'Registro Iva'),
+        'name_registry': fields.char('Descrizione Registro', size=30),
+        'code_registry': fields.char('Codice Registro', size=10),
+                }
 
     def _pulisci(self, cr, uid, context):
         ids = self.search(cr, uid, [])
@@ -168,7 +171,10 @@ class temporary_vatregistry(orm.Model):
                     'amount_tax': amount_tax * tax_sign,
                     'journal_id': invoice.journal_id.id,
                     'period_id': invoice.period_id.id,
-                    }
+                    'registry_id': paramters.registry_id.id,
+                    'name_registry': paramters.registry_id.name,
+                    'code_registry': paramters.registry_id.reg_vat_code,
+                }
                 line_ids.append(self.create(cr, uid, vals, context))
         ok = self.pool.get('temporay.vatregisty.total').load_data(
             cr, uid, line_ids, context)
@@ -224,7 +230,7 @@ class wizard_print_vatregistry(orm.TransientModel):
 
     def on_change_registry_id(self, cr, uid, ids, registry_id, context=False):
         v = {}
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         warning = {}
         domain = {}
         if not context:
