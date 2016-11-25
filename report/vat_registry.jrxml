@@ -20,6 +20,9 @@
      temporary_vatregistry."invoice_number" AS temporary_vatregistry_invoice_number,
      temporary_vatregistry."tax_id" AS temporary_vatregistry_tax_id,
      temporary_vatregistry."create_date" AS temporary_vatregistry_create_date,
+     temporary_vatregistry."registry_id" AS temporary_vatregistry_registry_id,
+     temporary_vatregistry."name_registry" AS temporary_vatregistry_name_registry,
+     temporary_vatregistry."code_registry" AS temporary_vatregistry_code_registry,
      res_company."name" AS res_company_name,
      res_partner."street" AS res_partner_street,
      res_partner."city" AS res_partner_city,
@@ -71,6 +74,9 @@ temporary_vatregistry."name" ASC]]>
 	<field name="temporary_vatregistry_invoice_number" class="java.lang.String"/>
 	<field name="temporary_vatregistry_tax_id" class="java.lang.Integer"/>
 	<field name="temporary_vatregistry_create_date" class="java.sql.Timestamp"/>
+	<field name="temporary_vatregistry_registry_id" class="java.lang.Integer"/>
+	<field name="temporary_vatregistry_name_registry" class="java.lang.String"/>
+	<field name="temporary_vatregistry_code_registry" class="java.lang.String"/>
 	<field name="res_company_name" class="java.lang.String"/>
 	<field name="res_partner_street" class="java.lang.String"/>
 	<field name="res_partner_city" class="java.lang.String"/>
@@ -246,7 +252,7 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="14" splitType="Stretch">
+		<band height="54" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="107" height="10" uuid="78337781-4be9-4b34-94a8-0ac21cd81bf2"/>
 				<textElement>
@@ -293,6 +299,14 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{last_page} + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="20" width="195" height="20" uuid="1dd799f2-862a-4482-ba92-0196b71e3a10"/>
+				<textFieldExpression><![CDATA[$F{temporary_vatregistry_name_registry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="20" width="222" height="20" uuid="689e21dc-14b2-4910-97f6-6de8f7f1f6ad"/>
+				<textFieldExpression><![CDATA[$F{temporary_vatregistry_code_registry}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
