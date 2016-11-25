@@ -23,16 +23,22 @@
 			<field name="model">vat.registry</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Registro Iva">
-                    <group>
+                <form string="Registro Iva" version="7.0" >
+                    <group col="4" colspan="4">
                         <field name="reg_vat_code" />
 		                <field name="name" />
 		                <field name="type" />
                         <field name="activity_code" />
                     </group>
-                    <group>
-                        <field name="journal_ids" />
-                    </group>
+                    <notebook colspan="4">
+                        <page string="Voucher Entry">
+                            <field name="journal_ids"  >
+                                <tree string="Voucher Items" editable="bottom">
+                                    <field name="journal_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
 
 		      </form>
 		    </field>

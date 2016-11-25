@@ -34,8 +34,8 @@ class vat_registry(orm.Model):
         'journal_ids': fields.one2many('vat.registry.journals',
                                        'vat_registry_id','Lista Sezionali'),
         'type': fields.selection(
-                (('Vendite', 'vendite'), ('Acquisti', 'acquisti'),
-                 ('Corrispettivi', 'corrispettivi')),
+                (('vendite', 'Vendite'), ('acquisti', 'Acquisti'),
+                 ('corrispettivi', 'Corrispettivi')),
                 'Tipo Registro'),
     }
 
