@@ -50,35 +50,33 @@ class temporay_vatregisty_total(orm.Model):
         group_dict = {}
         for line in self.pool.get('temporary.vatregistry').browse(
                 cr, uid, ids, context):
-            if not line.period_id.id in group_dict:
-                group_dict.update({line.period_id.id: {}})
-            if not line.journal_id.id in group_dict[line.period_id.id]:
-                group_dict[line.period_id.id].update(
-                    {line.journal_id.id: {}})
-            if not line.tax_code_id.id in group_dict[
-                    line.period_id.id][line.journal_id.id]:
-                group_dict[line.period_id.id][line.journal_id.id].update({
+            # if not line.period_id.id in group_dict:
+            #     group_dict.update({line.period_id.id: {}})
+            # if not line.journal_id.id in group_dict[line.period_id.id]:
+            #     group_dict[line.period_id.id].update(
+            #         {line.journal_id.id: {}})
+            # in questo crea il totale della stampa
+            if not line.tax_code_id.id in group_dict:
+                # [
+                #     line.period_id.id][line.journal_id.id]:
+                group_dict.update({
                     line.tax_code_id.id: {
                         'amount_untaxed': 0.0,
                         'amount_tax': 0.0}})
             group_dict[
-                line.period_id.id][
-                line.journal_id.id][
                 line.tax_code_id.id]['amount_untaxed'] += line.amount_untaxed
-
             group_dict[
-                line.period_id.id][
-                line.journal_id.id][
                 line.tax_code_id.id]['amount_tax'] += line.amount_tax
-        for period_id, journals in group_dict.iteritems():
-            for journal_id, taxes in journals.iteritems():
-                for tax_code_id, amounts in taxes.iteritems():
+        #
+        # for period_id, journals in group_dict.iteritems():
+        #     for journal_id, taxes in journals.iteritems():
+        for tax_code_id, amounts in group_dict.iteritems():
                     self.create(cr, uid, {
                         'tax_code_id': tax_code_id,
                         'amount_untaxed': amounts['amount_untaxed'],
                         'amount_tax': amounts['amount_tax'],
-                        'journal_id': journal_id,
-                        'period_id': period_id,
+                        # 'journal_id': journal_id,
+                        # 'period_id': period_id,
                         }, context)
         return True
 
