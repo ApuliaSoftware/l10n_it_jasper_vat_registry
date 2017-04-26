@@ -152,7 +152,7 @@ class temporary_vatregistry(orm.Model):
             invoice_number =  invoice.origin or invoice.number
             if invoice.company_id.use_origin:
                 invoice_number = invoice.origin
-            if invoice.type in ('in_invoice', 'in_refund'):
+            if invoice.type in ('in_refund', 'out_refund'):
                 tax_sign = -1
                 invoice_number = invoice.supplier_invoice_number
             inv_total = curr_obj.compute(
