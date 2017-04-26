@@ -33,6 +33,8 @@ class temporay_vatregisty_total(orm.Model):
         'tax_id': fields.many2one('account.tax', 'Tax ID'),
         'amount_untaxed': fields.float('Amount Untaxed'),
         'amount_tax': fields.float('Amount Tax'),
+        'amount_tax_indet': fields.float('Amount Tax Indet'),
+        'amount_tax_split': fields.float('Amount Tax Split'),
         'journal_id': fields.many2one('account.journal', 'Journal'),
         'period_id': fields.many2one('account.period', 'Period'),
         'tax_code_id': fields.many2one('account.tax.code', 'Tax Account'),
@@ -62,11 +64,18 @@ class temporay_vatregisty_total(orm.Model):
                 group_dict.update({
                     line.tax_code_id.id: {
                         'amount_untaxed': 0.0,
-                        'amount_tax': 0.0}})
+                        'amount_tax': 0.0,
+                        'amount_tax_indet':0.0,
+                        'amount_tax_split': 0.0
+                    }})
             group_dict[
                 line.tax_code_id.id]['amount_untaxed'] += line.amount_untaxed
-            group_dict[
-                line.tax_code_id.id]['amount_tax'] += line.amount_tax
+            if line.tax_code_id.iva_indet:
+                group_dict[
+                    line.tax_code_id.id]['amount_tax_indet'] += line.amount_tax
+            else:
+                group_dict[
+                    line.tax_code_id.id]['amount_tax'] += line.amount_tax
         #
         # for period_id, journals in group_dict.iteritems():
         #     for journal_id, taxes in journals.iteritems():
