@@ -84,6 +84,8 @@ class temporay_vatregisty_total(orm.Model):
                         'tax_code_id': tax_code_id,
                         'amount_untaxed': amounts['amount_untaxed'],
                         'amount_tax': amounts['amount_tax'],
+                        'amount_tax_indet': amounts['amount_tax_indet'],
+                        'amount_tax_split': amounts['amount_tax_split'],
                         # 'journal_id': journal_id,
                         # 'period_id': period_id,
                         }, context)
