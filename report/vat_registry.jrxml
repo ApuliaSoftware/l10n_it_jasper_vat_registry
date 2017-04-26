@@ -151,7 +151,7 @@ ORDER BY
 				<textField isBlankWhenNull="true">
 					<reportElement x="440" y="0" width="57" height="8"/>
 					<textElement>
-						<font size="6"/>
+						<font size="5"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{temporary_vatregistry_invoice_type}.contains( "invoice" ) ? "Fattura" : ""
 + " " +
