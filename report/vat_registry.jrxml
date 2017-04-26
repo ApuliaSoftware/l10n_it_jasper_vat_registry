@@ -330,7 +330,7 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="15" splitType="Prevent">
+		<band height="9" splitType="Prevent">
 			<textField>
 				<reportElement x="230" y="0" width="137" height="8"/>
 				<textElement>
@@ -352,12 +352,6 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_amount_tax} < 0 ? $F{temporary_vatregistry_amount_tax} * -1 : $F{temporary_vatregistry_amount_tax}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="12" width="555" height="1"/>
-				<graphicElement>
-					<pen lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
 		</band>
 	</detail>
 	<summary>
