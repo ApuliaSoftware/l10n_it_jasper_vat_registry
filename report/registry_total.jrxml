@@ -101,14 +101,14 @@ FROM
 	<detail>
 		<band height="16" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="0" width="156" height="15"/>
+				<reportElement x="1" y="0" width="192" height="15"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{account_tax_code_name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="161" y="0" width="101" height="15"/>
+				<reportElement x="193" y="0" width="69" height="15"/>
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>

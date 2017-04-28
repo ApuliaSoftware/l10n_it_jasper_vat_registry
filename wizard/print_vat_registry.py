@@ -165,13 +165,10 @@ class temporary_vatregistry(orm.Model):
                 tax_code = tax_line.tax_code_id
                 if tax_code.perc_indet <> 0.0:
                     if tax_code.iva_indet:
-                        amount_untaxed = amount_untaxed - \
-                                             (amount_untaxed * tax_code.perc_indet / 100)
+                        amount_untaxed = (amount_untaxed * tax_code.perc_indet / 100)
                     else:
-                        amount_untaxed = amount_untaxed - \
-                                             (amount_untaxed *
+                        amount_untaxed = (amount_untaxed *
                                               (100 - tax_code.perc_indet) / 100)
-
                 amount_tax = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
                     tax_line.amount, True, False, False, context)
