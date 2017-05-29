@@ -167,7 +167,7 @@ class temporary_vatregistry(orm.Model):
                 if not tax_code:
                     raise orm.except_orm(
                         'Errore',
-                        'Controllare la Fattura '+ invoice.name)
+                        'Controllare la Fattura '+ invoice.number)
                 if tax_code.perc_indet <> 0.0:
                     if tax_code.iva_indet:
                         amount_untaxed = (amount_untaxed * tax_code.perc_indet / 100)
