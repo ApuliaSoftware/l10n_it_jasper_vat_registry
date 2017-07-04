@@ -162,7 +162,8 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 					<textElement textAlignment="Right">
 						<font size="6"/>
 					</textElement>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_invoice_total}]]></textFieldExpression>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_invoice_type}.contains( "refund" ) ?
+$F{temporary_vatregistry_invoice_total} * -1 : $F{temporary_vatregistry_invoice_total}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="0" y="0" width="51" height="8"/>
@@ -343,14 +344,14 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_amount_untaxed} < 0 ? $F{temporary_vatregistry_amount_untaxed} * -1 : $F{temporary_vatregistry_amount_untaxed}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_amount_untaxed}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="497" y="0" width="57" height="8"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_amount_tax} < 0 ? $F{temporary_vatregistry_amount_tax} * -1 : $F{temporary_vatregistry_amount_tax}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporary_vatregistry_amount_tax}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
