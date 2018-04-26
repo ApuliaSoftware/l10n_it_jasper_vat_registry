@@ -182,7 +182,7 @@ class temporary_vatregistry(orm.Model):
                 if invoice.type in ('in_refund', 'in_invoice'):
                     order= invoice.registration_date+' '+invoice.move_id.name
                 else:
-                    order = invoice.date_invoice + ' ' + invoice_number
+                    order = invoice.date_invoice + ' ' + invoice_number[-11:]
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
