@@ -150,7 +150,7 @@ class temporary_vatregistry(orm.Model):
             tax_sign = 1
             if invoice.state in ('proforma', 'proforma2'):
                 continue
-            invoice_number =  invoice.origin or invoice.number
+            invoice_number = invoice.origin or invoice.number
             if invoice.company_id.use_origin:
                 invoice_number = invoice.origin
             if invoice.type in ('in_refund', 'out_refund'):
@@ -182,7 +182,7 @@ class temporary_vatregistry(orm.Model):
                 if invoice.type in ('in_refund', 'in_invoice'):
                     order.join(invoice.registration_date, invoice.move_id.name)
                 else:
-                    order.join(invoice.date_invoice, invoice.invoice_number )
+                    order.join(invoice.date_invoice, invoice_number)
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
