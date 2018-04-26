@@ -180,9 +180,9 @@ class temporary_vatregistry(orm.Model):
                     tax_line.amount, True, False, False, context)
                 order = ''
                 if invoice.type in ('in_refund', 'in_invoice'):
-                    order.join(invoice.registration_date, invoice.move_id.name)
+                    order= invoice.registration_date+' '+invoice.move_id.name
                 else:
-                    order.join(invoice.date_invoice, invoice_number)
+                    order = invoice.date_invoice + ' ' + invoice_number
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
