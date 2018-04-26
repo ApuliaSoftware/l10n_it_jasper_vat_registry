@@ -23,6 +23,7 @@
     temporary_vatregistry."registry_id" AS temporary_vatregistry_registry_id,
     temporary_vatregistry."name_registry" AS temporary_vatregistry_name_registry,
     temporary_vatregistry."code_registry" AS temporary_vatregistry_code_registry,
+    temporary_vatregistry."order" AS order,
      res_company."name" AS res_company_name,
      res_partner."street" AS res_partner_street,
      res_partner."city" AS res_partner_city,
@@ -59,8 +60,7 @@ FROM
      LEFT OUTER JOIN "public"."account_tax_code" account_tax_code ON temporary_vatregistry."tax_code_id" = account_tax_code."id"
 ORDER BY
      temporary_vatregistry."period_id" ASC,
-     temporary_vatregistry."date" ASC,
-     temporary_vatregistry."name" ASC]]>
+     temporary_vatregistry."order" ASC]]>
 	</queryString>
 	<field name="temporary_vatregistry_amount_untaxed" class="java.lang.Double"/>
 	<field name="temporary_vatregistry_name" class="java.lang.String"/>

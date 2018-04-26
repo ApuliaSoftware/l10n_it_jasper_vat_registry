@@ -115,6 +115,7 @@ class temporary_vatregistry(orm.Model):
         'registry_id': fields.many2one('vat.registry', 'Registro Iva'),
         'name_registry': fields.char('Descrizione Registro', size=30),
         'code_registry': fields.char('Codice Registro', size=10),
+        'order': fields.char('Ordine di Stampa', size=256),
                 }
 
     def _pulisci(self, cr, uid, context):
@@ -177,6 +178,11 @@ class temporary_vatregistry(orm.Model):
                 amount_tax = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
                     tax_line.amount, True, False, False, context)
+                order = ''
+                if invoice.type in ('in_refund', 'in_invoice'):
+                    order.join(invoice.registration_date, invoice.move_id.name)
+                else:
+                    order.join(invoice.date_invoice, invoice.invoice_number )
                 vals = {
                     'company_id': invoice.company_id.id,
                     'name': invoice.move_id.name,
@@ -195,7 +201,9 @@ class temporary_vatregistry(orm.Model):
                     'registry_id': paramters.registry_id.id,
                     'name_registry': paramters.registry_id.name,
                     'code_registry': paramters.registry_id.reg_vat_code,
+                    'order': order,
                 }
+
                 line_ids.append(self.create(cr, uid, vals, context))
         ok = self.pool.get('temporay.vatregisty.total').load_data(
             cr, uid, line_ids, context)
