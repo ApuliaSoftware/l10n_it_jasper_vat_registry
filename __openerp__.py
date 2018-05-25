@@ -28,7 +28,7 @@
     'website': 'www.apuliasoftware.it',
     'license': 'AGPL-3',
     "depends": ['jasper_reports',
-                'account'
+                'account','l10n_it_split_payment',
                 ],
     "update_xml": ['wizard/print_vat_registry.xml',
                  'report.xml',

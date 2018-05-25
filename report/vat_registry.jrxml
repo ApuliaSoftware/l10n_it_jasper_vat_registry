@@ -47,6 +47,7 @@
      account_tax_code."info" AS account_tax_code_info,
      account_tax_code."code" AS account_tax_code_code,
      account_tax_code."name" AS account_tax_code_name,
+
      temporary_vatregistry."journal_id" AS temporary_vatregistry_journal_id,
      temporary_vatregistry."period_id" AS temporary_vatregistry_period_id,
      temporary_vatregistry."invoice_id" AS temporary_vatregistry_invoice_id

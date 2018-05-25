@@ -73,6 +73,9 @@ class temporay_vatregisty_total(orm.Model):
             if line.tax_code_id.iva_indet:
                 group_dict[
                     line.tax_code_id.id]['amount_tax_indet'] += line.amount_tax
+            elif line.tax_code_id.iva_diversa:
+                group_dict[
+                    line.tax_code_id.id]['amount_tax_split'] += line.amount_tax
             else:
                 group_dict[
                     line.tax_code_id.id]['amount_tax'] += line.amount_tax
@@ -159,7 +162,8 @@ class temporary_vatregistry(orm.Model):
                 invoice_number = invoice.supplier_invoice_number
             inv_total = curr_obj.compute(
                  cr, uid, invoice.currency_id.id,
-                 std_curr, invoice.amount_total, True, False, False, context)
+                 std_curr, invoice.amount_total+invoice.amount_sp, True, False, False, context)
+
             for tax_line in invoice.tax_line:
                 amount_untaxed = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
