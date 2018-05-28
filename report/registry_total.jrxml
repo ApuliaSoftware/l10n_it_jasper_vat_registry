@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vat_registry_subreport1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.8627639691774651"/>
+	<property name="ireport.zoom" value="1.5394743546921197"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -59,6 +59,10 @@ FROM
 	<variable name="Tot_Indet" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{temporay_vatregisty_total_amount_tax_indet}]]></variableExpression>
 	</variable>
+	<variable name="TotSplit" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{temporay_vatregisty_total_amount_tax_split}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -96,6 +100,13 @@ FROM
 				</textElement>
 				<text><![CDATA[Indetraibile]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="490" y="6" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Split Payment]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
@@ -125,6 +136,11 @@ FROM
 				<reportElement x="390" y="0" width="100" height="15"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporay_vatregisty_total_amount_tax_indet}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="498" y="0" width="92" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{temporay_vatregisty_total_amount_tax_split}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -158,6 +174,11 @@ FROM
 				<reportElement x="392" y="6" width="98" height="15"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{Tot_Indet}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="492" y="6" width="98" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{TotSplit}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
