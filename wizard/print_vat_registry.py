@@ -155,7 +155,7 @@ class temporary_vatregistry(orm.Model):
                 continue
             invoice_number = invoice.origin or invoice.number
             if invoice.company_id.use_origin:
-                invoice_number = invoice.origin
+                invoice_number = invoice.origin or invoice.number
             if invoice.type in ('in_refund', 'out_refund'):
                 tax_sign = -1
             if invoice.type in ('in_refund', 'in_invoice'):
@@ -163,7 +163,6 @@ class temporary_vatregistry(orm.Model):
             inv_total = curr_obj.compute(
                  cr, uid, invoice.currency_id.id,
                  std_curr, invoice.amount_total+invoice.amount_sp, True, False, False, context)
-
             for tax_line in invoice.tax_line:
                 amount_untaxed = curr_obj.compute(
                     cr, uid, invoice.currency_id.id, std_curr,
@@ -184,7 +183,7 @@ class temporary_vatregistry(orm.Model):
                     tax_line.amount, True, False, False, context)
                 order = ''
                 if invoice.type in ('in_refund', 'in_invoice'):
-                    order= invoice.registration_date+' '+invoice.move_id.name
+                    order = invoice.registration_date+' '+invoice.move_id.name
                 else:
                     order = invoice.date_invoice + ' ' + invoice_number[-11:]
                 vals = {
