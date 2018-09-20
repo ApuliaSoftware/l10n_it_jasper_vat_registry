@@ -119,6 +119,7 @@ class temporary_vatregistry(orm.Model):
         'name_registry': fields.char('Descrizione Registro', size=30),
         'code_registry': fields.char('Codice Registro', size=10),
         'order': fields.char('Ordine di Stampa', size=256),
+        'last_year_vatcredit': fields.float('Credito Iva Anno Precedente'),
                 }
 
     def _pulisci(self, cr, uid, context):
@@ -205,6 +206,7 @@ class temporary_vatregistry(orm.Model):
                     'name_registry': paramters.registry_id.name,
                     'code_registry': paramters.registry_id.reg_vat_code,
                     'order': order,
+                    'last_year_vatcredit': invoice.period_id.last_year_vatcredit,
                 }
 
                 line_ids.append(self.create(cr, uid, vals, context))

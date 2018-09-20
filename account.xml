@@ -54,5 +54,23 @@
 <menuitem action="action_vatregistry" id="menu_vatregistry_tree" parent="account.menu_journals" />
 
 
+
+		<record model="ir.ui.view" id="vat_credit_last_year_form_omaf">
+			<field name="name">vat_credit_last_year.form_omaf</field>
+			<field name="model">account.period</field>
+			<field name="inherit_id" ref="account.view_account_period_form"/>
+			<field name="arch" type="xml">
+                    <field name="special" position="after">
+                        <field name="last_year_vatcredit" />
+                    </field>
+			</field>
+		</record>
+
+
+
+
+
+
+
 </data>
 </openerp>

@@ -40,7 +40,7 @@ class vat_registry(orm.Model):
     }
 
 
-    class vat_registry_journals(orm.Model):
+class vat_registry_journals(orm.Model):
 
         _name = 'vat.registry.journals'
         _description = 'Lista dei sezionali del registro iva'
@@ -48,3 +48,11 @@ class vat_registry(orm.Model):
             'vat_registry_id': fields.many2one('vat.registry', 'Registro Iva'),
             'journal_id': fields.many2one('account.journal', 'Sezionale'),
         }
+
+
+class AccountPeriod(orm.Model):
+
+    _inherit = 'account.period'
+    _columns = {
+        'last_year_vatcredit': fields.float('Credito Iva Anno Precedente'),
+    }
