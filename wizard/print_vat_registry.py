@@ -206,9 +206,12 @@ class temporary_vatregistry(orm.Model):
                     'name_registry': paramters.registry_id.name,
                     'code_registry': paramters.registry_id.reg_vat_code,
                     'order': order,
-                    'last_year_vatcredit': invoice.period_id.last_year_vatcredit,
+#                    'last_year_vatcredit': invoice.period_id.last_year_vatcredit,
                 }
-
+				if paramters.registry_id.type=='acquisti':
+					vals['last_year_vatcredit'] =  invoice.period_id.last_year_vatcredit
+				else:
+					vals['last_year_vatcredit']= 0.0
                 line_ids.append(self.create(cr, uid, vals, context))
         ok = self.pool.get('temporay.vatregisty.total').load_data(
             cr, uid, line_ids, context)

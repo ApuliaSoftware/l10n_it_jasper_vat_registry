@@ -24,6 +24,7 @@
     temporary_vatregistry."name_registry" AS temporary_vatregistry_name_registry,
     temporary_vatregistry."code_registry" AS temporary_vatregistry_code_registry,
     temporary_vatregistry."order" AS order,
+    temporary_vatregistry."last_year_vatcredit" AS last_year_vatcredit,
      res_company."name" AS res_company_name,
      res_partner."street" AS res_partner_street,
      res_partner."city" AS res_partner_city,
@@ -44,6 +45,7 @@
      account_period."name" AS account_period_name,
      account_period."date_stop" AS account_period_date_stop,
      account_period."date_start" AS account_period_date_start,
+
      account_tax_code."info" AS account_tax_code_info,
      account_tax_code."code" AS account_tax_code_code,
      account_tax_code."name" AS account_tax_code_name,
@@ -76,6 +78,8 @@ ORDER BY
 	<field name="temporary_vatregistry_registry_id" class="java.lang.Integer"/>
 	<field name="temporary_vatregistry_name_registry" class="java.lang.String"/>
 	<field name="temporary_vatregistry_code_registry" class="java.lang.String"/>
+	<field name="order" class="java.lang.String"/>
+	<field name="last_year_vatcredit" class="java.lang.Double"/>
 	<field name="res_company_name" class="java.lang.String"/>
 	<field name="res_partner_street" class="java.lang.String"/>
 	<field name="res_partner_city" class="java.lang.String"/>
@@ -173,6 +177,9 @@ $F{temporary_vatregistry_invoice_total} * -1 : $F{temporary_vatregistry_invoice_
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{temporary_vatregistry_name}]]></textFieldExpression>
 				</textField>
+				<line>
+					<reportElement x="1" y="0" width="555" height="1"/>
+				</line>
 			</band>
 		</groupHeader>
 	</group>
@@ -180,7 +187,7 @@ $F{temporary_vatregistry_invoice_total} * -1 : $F{temporary_vatregistry_invoice_
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="56" splitType="Stretch">
+		<band height="65" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="107" height="8"/>
 				<textElement>
@@ -243,92 +250,107 @@ $F{temporary_vatregistry_invoice_total} * -1 : $F{temporary_vatregistry_invoice_
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temporary_vatregistry_name_registry}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="25" width="51" height="8"/>
+				<reportElement x="1" y="43" width="51" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Periodo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="56" y="25" width="161" height="8"/>
+				<reportElement x="52" y="43" width="161" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{account_period_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="231" y="26" width="160" height="8"/>
+				<reportElement x="227" y="44" width="160" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ragione Sociale]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="227" y="41" width="160" height="8"/>
+				<reportElement x="224" y="51" width="160" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo IVA Assoggettamento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="497" y="41" width="56" height="8"/>
+				<reportElement x="494" y="51" width="56" height="8"/>
 				<textElement textAlignment="Right">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Imposta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="481" y="26" width="73" height="8"/>
+				<reportElement x="477" y="44" width="73" height="8"/>
 				<textElement textAlignment="Right">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Totale Fattura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="169" y="41" width="49" height="8"/>
+				<reportElement x="166" y="51" width="49" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data Doc]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="51" y="41" width="36" height="8"/>
+				<reportElement x="48" y="51" width="36" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data Reg.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="92" y="41" width="51" height="8"/>
+				<reportElement x="89" y="51" width="51" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[N° Doc]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="451" y="26" width="41" height="8"/>
+				<reportElement x="447" y="44" width="41" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Causale]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="425" y="41" width="66" height="8"/>
+				<reportElement x="422" y="51" width="66" height="8"/>
 				<textElement textAlignment="Right">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Imponibile]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="41" width="51" height="8"/>
+				<reportElement x="2" y="51" width="51" height="8"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nr. Prot.]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="49" width="555" height="1"/>
-			</line>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="209" y="25" width="176" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{last_year_vatcredit} > 0.0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{last_year_vatcredit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="56" y="25" width="229" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$F{last_year_vatcredit} > 0.0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credito Iva Anno Precedente]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
