@@ -115,6 +115,7 @@ class temporary_vatregistry(orm.Model):
         'amount_tax': fields.float('Amount Tax'),
         'journal_id': fields.many2one('account.journal', 'Journal'),
         'period_id': fields.many2one('account.period', 'Period'),
+        'vat_competence_period_id': fields.many2one('account.period', 'Periodo di competenza'),
         'registry_id': fields.many2one('vat.registry', 'Registro Iva'),
         'name_registry': fields.char('Descrizione Registro', size=30),
         'code_registry': fields.char('Codice Registro', size=10),
@@ -173,7 +174,7 @@ class temporary_vatregistry(orm.Model):
                     raise orm.except_orm(
                         'Errore',
                         'Controllare la Fattura '+ invoice.number)
-                if tax_code.perc_indet <> 0.0:
+                if tax_code.perc_indet != 0.0:
                     if tax_code.iva_indet:
                         amount_untaxed = (amount_untaxed * tax_code.perc_indet / 100)
                     else:
@@ -194,7 +195,7 @@ class temporary_vatregistry(orm.Model):
                     'invoice_number': invoice_number,
                     'invoice_id': invoice.id,
                     'invoice_date': invoice.date_invoice,
-                    'partner_id': invoice.partner_id.id,
+                    'partner_id': invoice.partner_id.id,                   
                     'invoice_type': invoice.type,
                     'invoice_total': inv_total,
                     'tax_code_id': tax_line.tax_code_id.id,
@@ -208,6 +209,8 @@ class temporary_vatregistry(orm.Model):
                     'order': order,
 #                    'last_year_vatcredit': invoice.period_id.last_year_vatcredit,
                 }
+        if invoice.vat_periodo_id:
+            vals['vat_competence_period_id'] = invoice.vat_periodo_id.id
 		if paramters.registry_id.type=='acquisti':
 			vals['last_year_vatcredit'] =  invoice.period_id.last_year_vatcredit
 		else:
