@@ -117,35 +117,35 @@ ORDER BY
 		<groupHeader>
 			<band height="12" splitType="Prevent">
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement x="51" y="0" width="35" height="8"/>
+					<reportElement x="51" y="2" width="35" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
 					<textFieldExpression class="java.util.Date"><![CDATA[$F{temporary_vatregistry_date}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-					<reportElement x="89" y="0" width="80" height="8"/>
+					<reportElement x="89" y="2" width="80" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{temporary_vatregistry_invoice_number}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement x="169" y="0" width="35" height="8"/>
+					<reportElement x="169" y="2" width="35" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
 					<textFieldExpression class="java.util.Date"><![CDATA[$F{temporary_vatregistry_invoice_date}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="209" y="0" width="97" height="8"/>
+					<reportElement x="209" y="2" width="97" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{res_partner_a_name}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="307" y="0" width="133" height="8"/>
+					<reportElement x="307" y="2" width="133" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
@@ -154,7 +154,7 @@ ORDER BY
 ($F{res_partner_a_fiscalcode} == null ? "" :$F{res_partner_a_fiscalcode})]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="440" y="0" width="57" height="8"/>
+					<reportElement x="440" y="2" width="57" height="8"/>
 					<textElement>
 						<font size="5"/>
 					</textElement>
@@ -163,7 +163,7 @@ ORDER BY
 $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement x="497" y="0" width="57" height="8"/>
+					<reportElement x="497" y="2" width="57" height="8"/>
 					<textElement textAlignment="Right">
 						<font size="6"/>
 					</textElement>
@@ -171,7 +171,7 @@ $F{temporary_vatregistry_invoice_type}.contains( "refund" ) ? "Nota di Credito" 
 $F{temporary_vatregistry_invoice_total} * -1 : $F{temporary_vatregistry_invoice_total}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="0" y="0" width="51" height="8"/>
+					<reportElement x="0" y="2" width="51" height="8"/>
 					<textElement>
 						<font size="6"/>
 					</textElement>
